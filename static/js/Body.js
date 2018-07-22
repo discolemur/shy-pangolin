@@ -34,43 +34,47 @@ class Body extends Component {
   render(props, state) {
     return (
       h('div', { id: 'Wrapper' },
-        h(Header, {casual: state.casual, deeper: state.deeper, dating: state.dating, serious: state.serious, engaged: state.engaged, married: state.married, handleCheckChange: this.handleCheckChange}),
-        h('span', { style: 'width: 100%; display: inline-block; height: 2rem;'}, state.question),
-        h('button', {type: 'button', onclick: this.onNewQuestion}, 'New Question'),
+        h(Options, {casual: state.casual, deeper: state.deeper, dating: state.dating, serious: state.serious, engaged: state.engaged, married: state.married, handleCheckChange: this.handleCheckChange}),
+        h('div', { id: 'Content' },
+          h('div', { className: 'ContentCell' },
+            h('span', { id: 'Question' }, state.question)
+          ),
+          h('div', { className: 'ContentCell' },
+            h('button', { type: 'button', onclick: this.onNewQuestion, id: 'QBtn' }, 'New Question'),
+          )
+        ),
         h(Footer, null)
       )
     )
   }
 }
 
-function Header(props) {
+function Options(props) {
   return (
-    h('div', { id: "Header" },
-      h('div', { id: "Bar" },
-        h('div', { className: "item" },
-          h('span', { className: 'checkboxTxt'}, 'casual'),
-          h('input', {type:'checkbox', name:'casual', checked: props.casual, onChange: props.handleCheckChange})
-        ),
-        h('div', { className: "item" },
-          h('span', { className: 'checkboxTxt'}, 'deeper'),
-          h('input', {type:'checkbox', name:'deeper', checked: props.deeper, onChange: props.handleCheckChange})
-        ),
-        h('div', { className: "item" },
-          h('span', { className: 'checkboxTxt'}, 'dating'),
-          h('input', {type:'checkbox', name:'dating', checked: props.dating, onChange: props.handleCheckChange})
-        ),
-        h('div', { className: "item" },
-          h('span', { className: 'checkboxTxt'}, 'serious'),
-          h('input', {type:'checkbox', name:'serious', checked: props.serious, onChange: props.handleCheckChange})
-        ),
-        h('div', { className: "item" },
-          h('span', { className: 'checkboxTxt'}, 'engaged'),
-          h('input', {type:'checkbox', name:'engaged', checked: props.engaged, onChange: props.handleCheckChange})
-        ),
-        h('div', { className: "item" },
-          h('span', { className: 'checkboxTxt'}, 'married'),
-          h('input', {type:'checkbox', name:'married', checked: props.married, onChange: props.handleCheckChange})
-        )
+    h('div', { id: "Options" },
+      h('div', { className: "item" },
+        h('span', { className: 'checkboxTxt'}, 'casual'),
+        h('input', {type:'checkbox', name:'casual', checked: props.casual, onChange: props.handleCheckChange})
+      ),
+      h('div', { className: "item" },
+        h('span', { className: 'checkboxTxt'}, 'deeper'),
+        h('input', {type:'checkbox', name:'deeper', checked: props.deeper, onChange: props.handleCheckChange})
+      ),
+      h('div', { className: "item" },
+        h('span', { className: 'checkboxTxt'}, 'dating'),
+        h('input', {type:'checkbox', name:'dating', checked: props.dating, onChange: props.handleCheckChange})
+      ),
+      h('div', { className: "item" },
+        h('span', { className: 'checkboxTxt'}, 'serious'),
+        h('input', {type:'checkbox', name:'serious', checked: props.serious, onChange: props.handleCheckChange})
+      ),
+      h('div', { className: "item" },
+        h('span', { className: 'checkboxTxt'}, 'engaged'),
+        h('input', {type:'checkbox', name:'engaged', checked: props.engaged, onChange: props.handleCheckChange})
+      ),
+      h('div', { className: "item" },
+        h('span', { className: 'checkboxTxt'}, 'married'),
+        h('input', {type:'checkbox', name:'married', checked: props.married, onChange: props.handleCheckChange})
       )
     )
   )

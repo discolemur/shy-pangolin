@@ -1,293 +1,65 @@
-#intro {
+html, body, #Main , #Wrapper {
   height: 100%;
   width: 100%;
-  display: inline-block;
-}
-.Paralax {
-  background-position: center;
-  background-repeat: no-repeat;
-
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  overflow: hidden;
   margin: 0;
-  padding: 0;
-}
-.Paralax.unset {
-  z-index: -2;
-}
-.Paralax.set {
-  z-index: -1;
-}
-#Hero {
-  background-image: url('/static/img/heroBackground.jpg');
-  background-size: cover;
-}
-#AfterProfessional {
-  background-image: url('/static/img/eclipse.jpg');
-  background-color: black;
-  background-size: contain;
-}
-#HeroText {
-  color: white;
-  height: 100%;
-  width: 100%;
-  text-align: center;
-  align-content: center;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-#HeroText #Title {
-  font-size: 50px;
-  margin-bottom: 1.4rem;
-}
-#HeroText #Subtitle {
-  font-size: 24px;
 }
 
-#MainContent {
-  background: white;
-  width: 100%;
-  position: relative;
-}
-
-#SubIntro {
-  max-height: 50%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  background-color: white;
-  text-align: center;
-  padding-top: 4rem;
-}
-#SubIntro #Title {
-  color: #222;
-  font-size: 46px;
-  font-weight: bold;
-  padding-bottom: 2rem;
-}
-
-#MePhoto {
-  width: 100%;
-  background-color: white;
-  text-align: center;
-}
-#MePhoto img {
-  width: 400px;
-  max-width: 80%;
-  border-radius: 3.125rem;
-  height: auto;
-  margin-top: 4rem;
-}
-
-.BodyTitle {
-  font-size: 50px;
-}
-
-
-#Professional {
-  width: 100%;
-  padding: 4rem 0;
-  text-align: center;
-  background-color: white;
+#Wrapper {
   display: flex;
   flex-direction: column;
-}
-
-.ProItem {
-  display: flex;
-  justify-content: space-around;
-  padding-top: 2rem;
-  padding-left: 10%;
-  padding-right: 10%;
-}
-.ProIcon {
-  flex-grow: 3;
-  width: 100%;
-}
-.ProIcon img {
-  max-width: 160px;
-}
-.ProTimeframe {
-  flex-grow: 1;
-  width: 100%;
-  color: #4f755e;
-  font-size: 16px;
-  text-align: center;
-  font-weight: bold;
-}
-.ProText {
-  flex-grow: 3;
-  width: 100%;
-  text-align: left;
-}
-.ProText #title {
-  width: 100%;
-  display: inline-block;
-  color: #4f755e;
-  font-size: 18.8px;
-  font-weight: bold;
-  padding-bottom: 0.2rem;
-}
-.ProText #subtitle {
-  width: 100%;
-  display: inline-block;
-  font-weight: bold;
-  font-size: 16px;
-  color: #4f755e;
-}
-.ProText #subsubtitle {
-  width: 100%;
-  display: inline-block;
-  font-weight: bold;
-  font-size: 13.3px;
-  color: #4f755e;
-}
-.ProText .description {
-  width: 100%;
-  display: inline-block;
-  font-size: 16px;
-  color: #555;
-  padding-top: 0.5rem;
-  font-family: 'Martel', serif;
-  line-height: 1.5;
-}
-
-#Invisible {
-  display:block;
-  background: none;
-}
-
-#Personal {
-  padding: 4rem 0;
-  width: 100%;
-  text-align: center;
-  background-color: white;
-}
-
-#PersonalContent {
-  display: flex;
-  justify-content: space-around;
-  padding-top: 2rem;
-  padding-left: 10%;
-  padding-right: 10%;
-}
-
-#PersonalPhoto {
-  flex-grow: 1;
-  width: 100%;
-}
-#PersonalPhoto img {
-  max-width: 160px;
-  border: 2px solid #AAA;
-}
-#PersonalParagraph {
-  width: 100%;
-  flex-grow: 1;
-  font-size: 16px;
-  text-align: left;
-  font-family: 'Martel', serif;
-  line-height: 1.5;
-}
-#PersonalLinks {
-  width: 100%;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-#PersonalLinks img {
-  object-fit: contain;
-  display: block;
-  margin: auto;
-  padding: 3px;
-}
-#PersonalLinks a , #PersonalLinks a:link , #PersonalLinks a:visited , #PersonalLinks a:active {
-  text-decoration: none;
-  color: #555;
-}
-#PersonalLinks a:hover {
-  color: #999;
-}
-
-sup {
-  font-family: sans-serif;
 }
 
 .clickable {
   cursor: pointer;
 }
-a:hover sup , a:hover span {
-  text-decoration: underline;
+
+.item {
+  display: inline-block;
+  width: 100%;
 }
 
-.footnote {
-  position: absolute;
-  background-color: #FFF;
-  border: 3px solid #AAA;
-  right: 0.2rem;
-  top: 1.2rem;
-  z-index: 1;
+.checkboxTxt {
+  display: inline-block;
+  width: 100%;
 }
 
-.closeBtn {
-  font-weight: 700;
-  font-size: 21px;
-  line-height: 1;
-  text-shadow: 0 1px 0 #fff;
-  position: absolute;
-  right: 0.4rem;
-  font-family: sans-serif;
-  color: #AAA;
-}
-a:hover .closeBtn {
+a:hover {
   color: #444;
   text-decoration: none;
 }
-.footnoteContainer {
-  display: inline;
-  position: relative;
+
+#Content {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
-.footnoteContent {
-  padding: 0.4rem;
-  padding-top: 1rem;
-  margin: 0;
-  font-size: 14px;
+
+.ContentCell {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#Question {
+  width: 90%;
+  text-align: center;
+}
+
+#QBtn {
+  height: 2rem;
+}
+
+#Footer {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
 }
 
 @media print, screen and (max-width: 50rem) {
-  
-  #Professional , .ProItem {
-    display: inline-block;
-  } 
-  .ProText #title {
-    text-align: center;
-    padding-bottom: 0.8rem;
-  }
-  .ProIcon {
-    padding-bottom: 0.8rem;
-  }
-  #PersonalContent , #PersonalPhoto , #PersonalParagraph  {
-    display: inline-block;
-  }
-  #PersonalLinks {
-    flex-direction: row;
-    margin-top: 1rem;
-  }
-  #PersonalParagraph {
-    padding-top: 0.8rem;
-    padding-bottom: 0.8rem;
-  }
 }
 
 @media print, screen and (max-width: 35rem) {
-  #SubIntro {
-    max-height: 100%;
-  }
-  #SubIntro #Title, #HeroText #Title , .BodyTitle {
-    font-size: 32px;
-  }
 }
