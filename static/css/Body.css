@@ -2,11 +2,135 @@ html, body, #Main , #Wrapper {
   height: 100%;
   width: 100%;
   margin: 0;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 #Wrapper {
   display: flex;
   flex-direction: column;
+}
+
+#Menus {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.menu {
+  margin: 1rem;
+}
+
+.menu .label {
+  font-size: 0.8rem;
+  width: 100%;
+  text-align: center;
+  display: block;
+}
+
+.icon {
+  text-align: center;
+  pointer-events: auto;
+}
+
+.icon , .icon img {
+  max-height: 2rem;
+}
+
+.icon.open {
+  transform: rotate(-180deg);
+}
+
+@-webkit-keyframes turnOver {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(-180deg);
+  }
+}
+@-moz-keyframes turnOver {
+  from {
+    -moz-transform: rotate(0deg);
+  }
+  to {
+    -moz-transform: rotate(-180deg);
+  }
+}
+@-o-keyframes turnOver {
+  from {
+    -o-transform: rotate(0deg);
+  }
+  to {
+    -o-transform: rotate(-180deg);
+  }
+}
+@keyframes turnOver {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-180deg);
+  }
+}
+@-webkit-keyframes turnBack {
+  from {
+    -webkit-transform: rotate(-180deg);
+  }
+  to {
+    -webkit-transform: rotate(0deg);
+  }
+}
+@-moz-keyframes turnBack {
+  from {
+    -moz-transform: rotate(-180deg);
+  }
+  to {
+    -moz-transform: rotate(0deg);
+  }
+}
+@-o-keyframes turnBack {
+  from {
+    -o-transform: rotate(-180deg);
+  }
+  to {
+    -o-transform: rotate(0deg);
+  }
+}
+@keyframes turnBack {
+  from {
+    transform: rotate(-180deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.icon.open {
+  -webkit-animation: turnOver 0.5s 1; /* Safari 4+ */
+  -moz-animation:    turnOver 0.5s 1; /* Fx 5+ */
+  -o-animation:      turnOver 0.5s 1; /* Opera 12+ */
+  animation:         turnOver 0.5s 1; /* IE 10+, Fx 29+ */
+}
+.icon.closed {
+  -webkit-animation: turnBack 0.5s 1; /* Safari 4+ */
+  -moz-animation:    turnBack 0.5s 1; /* Fx 5+ */
+  -o-animation:      turnBack 0.5s 1; /* Opera 12+ */
+  animation:         turnBack 0.5s 1; /* IE 10+, Fx 29+ */
+}
+
+.shrinkable.open {
+  max-height: 100%;
+}
+.shrinkable.closed {
+  max-height: 0%;
+}
+.shrinkable {
+  transition: max-height 0.5s ease-in-out;
+  overflow: hidden;
 }
 
 .clickable {
@@ -23,6 +147,10 @@ html, body, #Main , #Wrapper {
   width: 100%;
 }
 
+input {
+  pointer-events: auto;
+}
+
 a:hover {
   color: #444;
   text-decoration: none;
@@ -36,7 +164,6 @@ a:hover {
 }
 
 .ContentCell {
-  height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -46,20 +173,32 @@ a:hover {
 #Question {
   width: 90%;
   text-align: center;
+  font-size: 3rem;
 }
 
 #QBtn {
   height: 2rem;
+  margin-bottom: 4rem;
 }
 
 #Footer {
   display: inline-block;
   width: 100%;
   text-align: center;
+  margin-bottom: 0.2rem;
+}
+#Footer p {
+  margin: 0;
 }
 
 @media print, screen and (max-width: 50rem) {
+  #Question {
+    font-size: 2rem;
+  }
 }
 
 @media print, screen and (max-width: 35rem) {
+  #Question {
+    font-size: 1.5rem;
+  }
 }

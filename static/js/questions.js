@@ -1,4 +1,6 @@
-questions = {
+"use strict";
+
+const questions = {
   //Tame intro questions
   casual: [
     'What\'s your favorite flavor of jelly bean?',
