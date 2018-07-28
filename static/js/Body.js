@@ -3,11 +3,13 @@
 class Body extends Component {
   constructor(props) {
     super(props);
+    this.closeMenus = this.closeMenus.bind(this);
     this.handleScroll = this.handleScroll.bind(this);
     this.handleCheckChange = this.handleCheckChange.bind(this);
     this.onNewQuestion = this.onNewQuestion.bind(this);
     this.setState({ top: 0, height: 0 });
     this.inquisitor = new Inquisitor();
+    this.menuClosers = [];
   }
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll, true);
@@ -19,6 +21,12 @@ class Body extends Component {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
+    if (name == 'unique') {
+      this.inquisitor.setUnique(value);
+    }
+    if (name == 'higher') {
+      this.inquisitor.setPreferHigher(value);
+    }
     this.setState({
       [name]: value
     });
@@ -29,15 +37,22 @@ class Body extends Component {
     this.setState({ height: height, top: currentTop });
   };
   onNewQuestion() {
+    this.closeMenus();
     this.setState({ question: this.inquisitor.randomQuestion({ casual: this.state.casual, deeper: this.state.deeper, dating: this.state.dating, serious: this.state.serious, engaged: this.state.engaged, married: this.state.married }) })
+  };
+  closeMenus(event) {
+    for (let l of this.menuClosers) {
+      l();
+    }
   };
   render(props, state) {
     return (
       h('div', { id: 'Wrapper' },
+        h('div', { id: 'BACKGROUND', style: `background: ${resources.background.color};` }),
         h('div', { id: 'Menus' },
-          h(Levels, { casual: state.casual, deeper: state.deeper, dating: state.dating, serious: state.serious, engaged: state.engaged, married: state.married, handleCheckChange: this.handleCheckChange }),
+          h(Levels, { setCloseListener: (l) => this.menuClosers.push(l), casual: state.casual, deeper: state.deeper, dating: state.dating, serious: state.serious, engaged: state.engaged, married: state.married, handleCheckChange: this.handleCheckChange }),
           h('div', { id: 'BUFFER', style: "width: 100%;" }),
-          h(Settings, { unique: state.unique, higher: state.higher, handleCheckChange: this.handleCheckChange }),
+          h(Settings, { setCloseListener: (l) => this.menuClosers.push(l), unique: state.unique, higher: state.higher, handleCheckChange: this.handleCheckChange }),
         ),
         h('div', { id: 'Content' },
           h('div', { className: 'ContentCell', style: 'height: 100%;' },
@@ -46,8 +61,7 @@ class Body extends Component {
           h('div', { className: 'ContentCell', style: 'height: 0%;' },
             h('button', { type: 'button', onclick: this.onNewQuestion, id: 'QBtn' }, 'New Question'),
           )
-        ),
-        h(Footer, null)
+        )
       )
     )
   }
@@ -56,17 +70,29 @@ class Body extends Component {
 class Menu extends Component {
   constructor(props) {
     super(props);
+    this.close = this.close.bind(this);
+    this.close();
+    props.setCloseListener(this.close);
+  };
+  close(event) {
+    if (event) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
     this.setState({ open: false });
-  }
+  };
   render(props, state) {
+    let _height = state.open ? 4 : props.height;
     return (
       h('div', { className: 'menu' },
-        h('span', { className: 'label' }, props.label),
-        h('div', { className: state.open ? 'icon open' : 'icon closed', onclick: () => this.setState({ open: !state.open }) },
-          h('img', { className: 'clickable', src: props.icon })
+        h('div', { className: 'menuTop', style: `background: ${resources.background.color};` },
+          h('span', { className: 'label' }, props.label),
+          h('div', { className: state.open ? 'icon open' : 'icon closed', onclick: () => this.setState({ open: !state.open }) },
+            h('img', { className: 'clickable', src: props.icon })
+          )
         ),
-        h('div', { className: state.open ? 'shrinkable open' : 'shrinkable closed' },
-          h('div', { className: 'items' }, props.items)
+        h('div', { className: state.open ? 'shrinkable open' : 'shrinkable closed', style: `top: ${_height}rem;` },
+          h('div', { className: 'items', style: `width: ${props.width}rem;` }, props.items)
         )
       )
     )
@@ -100,31 +126,25 @@ function Levels(props) {
       h('input', { type: 'checkbox', name: 'married', checked: props.married, onChange: props.handleCheckChange })
     )
   ]
-  return h(Menu, { items: items, icon: resources.icon.levels, label: 'Relationship Level' });
+  return h(Menu, { setCloseListener: props.setCloseListener, height: -13.2, width: 8, items: items, icon: resources.icon.levels, label: 'Relationship Level' });
 }
 
-// TODO: actually make the settings do stuff.
 function Settings(props) {
   const items = [
     h('div', { className: "item" },
-      h('span', { className: 'checkboxTxt' }, 'With replacement'),
+      h('span', { className: 'checkboxTxt' }, 'No repeats'),
       h('input', { type: 'checkbox', name: 'unique', checked: props.unique, onChange: props.handleCheckChange })
     ),
     h('div', { className: "item" },
       h('span', { className: 'checkboxTxt' }, 'Prefer higher level'),
       h('input', { type: 'checkbox', name: 'higher', checked: props.higher, onChange: props.handleCheckChange })
+    ),
+    h('div', { className: "item" },
+      h('span', { className: 'menuTxt' }, '© 2018 Nick Jensen')
     )
   ]
-  return h(Menu, { items: items, icon: resources.icon.settings, label: 'Settings' });
+  return h(Menu, { setCloseListener: props.setCloseListener, height: -3, width: 11, items: items, icon: resources.icon.settings, label: 'Settings' });
 }
 
-function Footer(props) {
-  const footnotes = [];
-  return (
-    h('div', { id: 'Footer' },
-      h('p', null, '© 2018 Nick Jensen')
-    )
-  )
-}
 
 render(h(Body), document.getElementById('Main'));
