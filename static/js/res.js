@@ -1,5 +1,7 @@
 "use strict";
 
+// TODO: add background image support
+
 const resources = {
     icon: {
         settings: '/static/img/settings-gear.png',
@@ -10,6 +12,6 @@ const resources = {
     },
     background : {
         color: '#F0F0F0',
-        img: ''
+        img: '/static/img/cutePangolin.jpg'
     }
 }

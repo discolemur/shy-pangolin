@@ -1,5 +1,7 @@
 "use strict";
 
+// TODO: remove duplicates, keep the lowest-level versions.
+
 const questions = {
   //Tame intro questions
   casual: [

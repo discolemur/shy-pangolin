@@ -48,7 +48,10 @@ class Body extends Component {
   render(props, state) {
     return (
       h('div', { id: 'Wrapper' },
-        h('div', { id: 'BACKGROUND', style: `background: ${resources.background.color};` }),
+        h('div', {
+          id: 'BACKGROUND',
+          style: `background: ${resources.background.color};`// background-image: url(${resources.background.img});`
+        }),
         h('div', { id: 'Menus' },
           h(Levels, { setCloseListener: (l) => this.menuClosers.push(l), casual: state.casual, deeper: state.deeper, dating: state.dating, serious: state.serious, engaged: state.engaged, married: state.married, handleCheckChange: this.handleCheckChange }),
           h('div', { id: 'BUFFER', style: "width: 100%;" }),
@@ -56,7 +59,7 @@ class Body extends Component {
         ),
         h('div', { id: 'Content' },
           h('div', { className: 'ContentCell', style: 'height: 100%;' },
-            h('span', { id: 'Question' }, state.question)
+            state.question ? h('span', { id: 'Question' }, state.question) : null
           ),
           h('div', { className: 'ContentCell', style: 'height: 0%;' },
             h('button', { type: 'button', onclick: this.onNewQuestion, id: 'QBtn' }, 'New Question'),
@@ -91,7 +94,7 @@ class Menu extends Component {
             h('img', { className: 'clickable', src: props.icon })
           )
         ),
-        h('div', { className: state.open ? 'shrinkable open' : 'shrinkable closed', style: `top: ${_height}rem;` },
+        h('div', { className: state.open ? 'shrinkable open' : 'shrinkable closed', style: `top: ${_height}rem; background: ${resources.background.color}` },
           h('div', { className: 'items', style: `width: ${props.width}rem;` }, props.items)
         )
       )

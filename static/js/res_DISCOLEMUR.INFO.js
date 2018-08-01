@@ -10,6 +10,6 @@ const resources = {
     },
     background : {
         color: '#F0F0F0',
-        img: ''
+        img: 'http://www.discolemur.info/shy-pangolin/static/img/cutePangolin.jpg'
     }
 }
