@@ -7,7 +7,7 @@ class Body extends Component {
     this.handleScroll = this.handleScroll.bind(this);
     this.handleCheckChange = this.handleCheckChange.bind(this);
     this.onNewQuestion = this.onNewQuestion.bind(this);
-    this.setState({ top: 0, height: 0 });
+    this.setState({ top: 0, height: 0, casual: true });
     this.inquisitor = new Inquisitor();
     this.menuClosers = [];
   }

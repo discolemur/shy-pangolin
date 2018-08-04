@@ -5,6 +5,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Idea Images (not for production and may contain copyright)
+cutePangolin*
+cartoonIdea*
+
 # Runtime data
 pids
 *.pid
