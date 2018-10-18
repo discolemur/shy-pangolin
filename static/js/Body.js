@@ -1,5 +1,7 @@
 "use strict";
 
+const _DEFAULT_ALL_LEVELS = true;
+
 class Body extends Component {
   constructor(props) {
     super(props);
@@ -7,7 +9,19 @@ class Body extends Component {
     this.handleScroll = this.handleScroll.bind(this);
     this.handleCheckChange = this.handleCheckChange.bind(this);
     this.onNewQuestion = this.onNewQuestion.bind(this);
-    this.setState({ top: 0, height: 0, casual: true });
+    this.setState({
+      top: 0,
+      height: 0,
+      casual: true,
+      unique: true,
+      higher: true,
+      casual: true,
+      deeper: _DEFAULT_ALL_LEVELS,
+      dating: _DEFAULT_ALL_LEVELS,
+      serious: _DEFAULT_ALL_LEVELS,
+      engaged: _DEFAULT_ALL_LEVELS,
+      married: _DEFAULT_ALL_LEVELS
+    });
     this.inquisitor = new Inquisitor();
     this.menuClosers = [];
   }
@@ -37,8 +51,15 @@ class Body extends Component {
     this.setState({ height: height, top: currentTop });
   };
   onNewQuestion() {
+    const qProps = new RandomQuestionProps(
+      this.state.casual,
+      this.state.deeper,
+      this.state.dating,
+      this.state.serious,
+      this.state.engaged,
+      this.state.married);
     this.closeMenus();
-    this.setState({ question: this.inquisitor.randomQuestion({ casual: this.state.casual, deeper: this.state.deeper, dating: this.state.dating, serious: this.state.serious, engaged: this.state.engaged, married: this.state.married }) })
+    this.setState({ question: this.inquisitor.randomQuestion(qProps) })
   };
   closeMenus(event) {
     for (let l of this.menuClosers) {
