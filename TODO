@@ -1,0 +1,1 @@
+Fix the "no repeats" feature. I think it doesn't work on startup. Maybe it needs to be clicked to work, but that's a bug not a feature.
