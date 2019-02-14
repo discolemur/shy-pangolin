@@ -22,7 +22,7 @@ class Body extends Component {
       engaged: _DEFAULT_ALL_LEVELS,
       married: _DEFAULT_ALL_LEVELS
     });
-    this.inquisitor = new Inquisitor();
+    this.inquisitor = new Inquisitor(this.state.unique, this.state.higher);
     this.menuClosers = [];
   }
   componentDidMount() {

@@ -51,7 +51,7 @@ class RandomQuestionProps {
 }
 
 class Inquisitor {
-  constructor(useUnique = false, preferHigher = false) {
+  constructor(useUnique, preferHigher) {
     this.used = new Set();
     this.useUnique = useUnique;
     this.preferHigher = preferHigher;
@@ -84,16 +84,18 @@ class Inquisitor {
     // Then, select a question.
     // Yes, I know this means levels with fewer questions will have more repeats and that's annoying.
     // But seriously -- implementing a really, truly, random chooser function kind of stinks.
-    let level = questionProps.getRandomLevel(this.preferHigher)
+    const level = questionProps.getRandomLevel(this.preferHigher)
     // console.log(level);
     for (let q of questions[level]) {
-      if ((this.useUnique && !this.used.has(q)) || !this.useUnique) {
+      if (!this.used.has(q) || !this.useUnique) {
         options.add(q);
       }
     }
     const _qs = Array.from(options);
     const finalQ = _qs.length > 0 ? _qs[Math.floor(Math.random() * _qs.length)] : resources.txt.noQuestions;
-    this.used.add(finalQ);
+    if (finalQ != resources.txt.noQuestions) {
+      this.used.add(finalQ);
+    }
     return finalQ;
   }
 }
